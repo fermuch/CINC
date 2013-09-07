@@ -1,0 +1,22 @@
+Models
+======
+
+Machine
+-------
+- serial number
+- model
+- belongs_to: student
+- has_many: states
+
+
+Student
+-------
+- name
+- cuil
+- has_one: machine
+
+
+State
+-----
+- name
+

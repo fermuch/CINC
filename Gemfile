@@ -8,12 +8,14 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
-gem 'bootstrap-sass'
+gem 'anjlab-bootstrap-rails', '>= 3.0.0.0', :require => 'bootstrap-rails'
 gem 'cancan'
 gem 'devise'
 gem 'haml-rails'
 gem 'rolify'
 gem 'simple_form', '>= 3.0.0.rc'
+gem "font-awesome-rails"
+gem 'modernizr-rails'
 group :assets do
   gem 'therubyracer', :platform=>:ruby
 end
@@ -37,4 +39,5 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner', '1.0.1'
   gem 'email_spec'
+  gem 'shoulda-matchers'
 end
