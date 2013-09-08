@@ -9,6 +9,7 @@
         /[if lt IE 8]
           = stylesheet_link_tag "font-awesome-ie7.min.css", media: "all"
         = javascript_include_tag :modernizr
+        = javascript_include_tag "//www.google.com/jsapi", "chartkick"
         = csrf_meta_tags
         = yield(:head)
   %body{:class => "#{controller_name} #{action_name}"}
@@ -18,94 +19,28 @@
         %nav.navbar.navbar-inverse.navbar-static-top
           / Brand and toggle get grouped for better mobile display
           %header.navbar-header
-            %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", :type => "button"}
-              %span.sr-only Toggle navigation
-              %span.icon-bar
-              %span.icon-bar
-              %span.icon-bar
             %a.navbar-brand{:href => "index.html"}
               = image_tag 'logo.png'
-          .topnav
-            .btn-toolbar
-              .btn-group
-                %a#changeSidebarPos.btn.btn-success.btn-sm{"data-original-title" => "Show / Hide Sidebar", "data-placement" => "bottom", "data-toggle" => "tooltip"}
-                  %i.icon-resize-horizontal
-              .btn-group
-                %a.btn.btn-default.btn-sm{"data-original-title" => "E-mail", "data-placement" => "bottom", "data-toggle" => "tooltip"}
-                  %i.icon-envelope
-                  %span.label.label-warning 5
-                %a.btn.btn-default.btn-sm{"data-original-title" => "Messages", "data-placement" => "bottom", "data-toggle" => "tooltip", :href => "#"}
-                  %i.icon-comments
-                  %span.label.label-danger 4
-              .btn-group
-                %a.btn.btn-default.btn-sm{"data-original-title" => "Document", "data-placement" => "bottom", "data-toggle" => "tooltip", :href => "#"}
-                  %i.icon-file
-                %a.btn.btn-default.btn-sm{"data-original-title" => "Help", "data-placement" => "bottom", "data-toggle" => "tooltip", :href => "#helpModal"}
-                  %i.icon-question-sign
-              .btn-group
-                %a.btn.btn-metis-1.btn-sm{"data-original-title" => "Logout", "data-placement" => "bottom", "data-toggle" => "tooltip", :href => "login.html"}
-                  %i.icon-off
           / /.topnav
           .collapse.navbar-collapse.navbar-ex1-collapse
             / .nav
             %ul.nav.navbar-nav
               %li
-                %a{:href => "dashboard.html"} Dashboard
+                %a{:href => "dashboard.html"} Panel de Admin
               %li
-                %a{:href => "table.html"} Tables
-              %li
-                %a{:href => "file.html"} File Manager
-              %li.dropdown
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  Form Elements
-                  %b.caret
-                %ul.dropdown-menu
-                  %li
-                    %a{:href => "form-general.html"} General
-                  %li
-                    %a{:href => "form-validation.html"} Validation
-                  %li
-                    %a{:href => "form-wysiwyg.html"} WYSIWYG
-                  %li
-                    %a{:href => "form-wizard.html"} Wizard & File Upload
+                %a{:href => "table.html"} Estadísticas
             / /.nav
         / /.navbar
         / header.head
         %header.head
-          .search-bar
-            %a#menu-toggle.accordion-toggle.btn.btn-primary.btn-sm.visible-xs{"data-original-title" => "Show/Hide Menu", "data-placement" => "bottom", "data-toggle" => "collapse", "data-tooltip" => "tooltip", :href => "#menu"}
-              %i.icon-sort
-            %form.main-search
-              .input-group
-                %input.input-small.form-control{:placeholder => "Live Search ...", :type => "text"}/
-                %span.input-group-btn
-                  %button.btn.btn-default.btn-sm{:type => "button"}
-                    %i.icon-search
-          / ."main-bar
           .main-bar
             %h3
               %i.icon-home
-              Metis
+              CINC
           / /.main-bar
         / end header.head
       / /#top
       #left
-        / .media.user-media
-        /   %a.user-link{:href => ""}
-        /     = image_tag "user.gif", :class => ['media-object', 'img-thumbnail', 'user-img']
-        /     %span.label.label-danger.user-label 16
-        /   .media-body
-        /     %h5.media-heading Archie
-        /     %ul.list-unstyled.user-info
-        /       %li
-        /         %a{:href => ""} Administrator
-        /       %li
-        /         Last Access :
-        /         %br/
-        /         %small
-        /           %i.icon-calendar
-        /           16 Mar 16:32
-        / #menu
         %ul#menu.accordion.collapse
           %li.nav-header Menú
           %li.nav-divider
@@ -115,7 +50,7 @@
               Panel de Admin
           %li.accordion-group
             %a.accordion-toggle{"data-parent" => "#menu", "data-target" => "#dashboard-nav", "data-toggle" => "collapse", :href => "#"}
-              %i.icon-signal
+              %i.icon-bar-chart
               Estadísticas
         / /#menu
       / /#left
@@ -123,46 +58,8 @@
         .outer
           .inner
             .col-lg-12
-              %h2 Free Admin Template with Twitter Bootstrap
-              %h3 Installation
-              %h4 2.0 Version
-              %p
-                required
-                %a{:href => "http://nodejs.org/"} node.js
-                \&
-                %a{:href => "http://gruntjs.com/getting-started"} grunt
-              %pre
-                %code
-                  :preserve
-                    $ git clone https://github.com/onokumus/Bootstrap-Admin-Template.git yourfoldername
-                    $ cd yourfoldername
-                    $ git submodule init
-                    $ git submodule update
-                    $ npm install
-                    $ grunt
-                    $ cd dist/
-                    $ open index.html              %h4 1.2 Version
-              %pre
-                %code
-                  :preserve
-                    $ git clone -b v1.2 https://github.com/onokumus/Bootstrap-Admin-Template.git yourfoldername
-                    $ cd yourfoldername
-                    $ git submodule init
-                    $ git submodule update
-                    $ open index.html              %h3 Demo
-              %h4 For 2.0.0 version
-              %p
-                %a{:href => "http://demo.onokumus.com/metis/"} http://demo.onokumus.com/metis/
-              %h4 For 1.2 version
-              %p
-                (not development)
-                %a{:href => "http://demo.onokumus.com/metis/v12"} http://demo.onokumus.com/metis/v12
-              %h3 Licensing
-              %p
-                Bootstrap Admin template is open-sourced software licensed under the
-                %a{:href => "http://opensource.org/licenses/MIT"} MIT License
-              %p
-                %a{:href => "https://wrapbootstrap.com/theme/nuro-theme-WB0628X10"} Buy me a coffee?
+              %h2 Estado Actual
+              = pie_chart({"Servicio Técnico" => 105, "Lista" => 155, "Ingresada" => 225, "Retirada" => 285, "Revisión" => 245})
           / end .inner
         / end .outer
       / end #content

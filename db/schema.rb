@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130829005159) do
+ActiveRecord::Schema.define(version: 20130908233806) do
 
   create_table "machine_states", force: true do |t|
     t.integer  "state_id"
     t.integer  "machine_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "reason"
+    t.text     "note"
   end
 
   create_table "machines", force: true do |t|
