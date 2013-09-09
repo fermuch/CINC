@@ -18,6 +18,9 @@ gem "font-awesome-rails"
 gem 'modernizr-rails'
 gem 'gon'
 gem 'chartkick'
+gem 'jeditable-rails'
+gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+gem 'will_paginate'
 group :assets do
   gem 'therubyracer', :platform=>:ruby
 end

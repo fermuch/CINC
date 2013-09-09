@@ -2,7 +2,7 @@
 %html{:lang => "es"}
   %head
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
-      %title= content_for?(:title) ? yield(:title) : "Cinc"
+      %title= content_for?(:title) ? yield(:title) : "CINC"
       %meta{:charset => "UTF-8"}/
       %meta{:content => content_for?(:description) ? yield(:description) : "Cinc", :name => "description"}
         = stylesheet_link_tag "application", :media => "all"
@@ -36,7 +36,7 @@
           .main-bar
             %h3
               %i.icon-home
-              CINC
+              CINC - Conectar Igualdad Netbook Manager
           / /.main-bar
         / end header.head
       / /#top
@@ -57,9 +57,7 @@
       #content
         .outer
           .inner
-            .col-lg-12
-              %h2 Estado Actual
-              = pie_chart({"Servicio Técnico" => 105, "Lista" => 155, "Ingresada" => 225, "Retirada" => 285, "Revisión" => 245})
+            =yield
           / end .inner
         / end .outer
       / end #content
@@ -68,4 +66,6 @@
       %p
         2013
         = link_to "CINC", "http://github.com/fermuch/CINC"
+    
+    = include_gon(watch: true)
     = javascript_include_tag "application"
