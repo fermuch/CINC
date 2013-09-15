@@ -139,6 +139,8 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
+    pkgr (0.3.4)
+      rake
     polyglot (0.3.3)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
@@ -257,6 +259,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   modernizr-rails
+  pkgr
   quiet_assets
   rails (= 4.0.0)
   rb-fchange

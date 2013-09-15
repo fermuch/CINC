@@ -49,3 +49,7 @@ group :test do
   gem 'email_spec'
   gem 'shoulda-matchers'
 end
+
+
+# para poder empaquetar a deb
+gem 'pkgr'
