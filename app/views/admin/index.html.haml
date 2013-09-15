@@ -1,6 +1,6 @@
 .col-lg-12
   %h2 Panel de Administración
-  = pie_chart @states, height: '150px'
+  = pie_chart admin_states_stats_path('json'), height: '150px'
 
 %table{:name => "students", :class => "datatable" }
   %thead
@@ -26,47 +26,6 @@
           = student.machine.machine_states.last.state.name
         %td{:id => 'reason'}
           = student.machine.machine_states.last.reason
-
-%br
-%br
-%center
-  %h2 Añadir Alumno
-  %div{style: 'width: 500px'}
-    = form_tag(admin_add_student_path, method: 'POST', class: 'form-horizontal') do
-      .form-group
-        %div.col-lg-4
-          %label.control-label.col-lg-4{:for => "name"} Nombre
-        %div.col-lg-8
-          %input#name.form-control{:type => "text", :name => 'student[name]'}/
-      .form-group
-        %div.col-lg-4
-          %label.control-label.col-lg-4{:for => "cuil"} CUIL
-        %div.col-lg-8
-          %input#cuil.form-control{:type => "text", :name => 'student[cuil]'}/
-      .form-group
-        %div.col-lg-4
-          %label.control-label.col-lg-4{:for => "sn"} S/N
-        %div.col-lg-8
-          %input#sn.form-control{:type => "text", :name => 'student[sn]'}/
-      .form-group
-        %div.col-lg-4
-          %label.control-label.col-lg-4{:for => "model"} Modelo
-        %div.col-lg-8
-          %input#model.form-control{:type => "text", :name => 'student[model]'}/
-      .form-group
-        %div.col-lg-4
-          %label.control-label.col-lg-4{:for => "state"} Estado
-        %div.col-lg-8
-          %input#state.form-control{:type => "text", :value => 'ingresada', :name => 'student[state]'}/
-      .form-group
-        %div.col-lg-4
-          %label.control-label.col-lg-4{:for => "reason"} Razón
-        %div.col-lg-8
-          %input#reason.form-control{:type => "text", :name => 'student[reason]'}/
-      .form-group
-        %div.col-lg-12
-          %center
-            %button.btn.btn-primary Añadir
 
 
 %br

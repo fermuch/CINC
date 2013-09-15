@@ -1,19 +1,47 @@
 class AdminController < ApplicationController
   def index
+    # save all the stundents in an array
+    # TODO: eager-loading
+    @students = Student.first(10)
+
+    # gon.watch.test = Time.now
+  end
+
+  def students
+    # make the json for datatables
+    if params['iDisplayStart'] and params['iDisplayLength'] then
+      @students = Student.paginate(:page => params['iDisplayStart'], :per_page => params['iDisplayLength'])
+    else
+      @students = Student.all
+    end
+
+    if params['sSearch'] then
+      @students.where('name LIKE ?', params['sSearch'])
+    end
+
+    if params['iSortingCols'] then
+      @students.order('? DESC', params['iSortingCols'])
+    end
+
+    @json = {}
+    @json['aaData'] = []
+    @students.each { |stu|
+      # alumno, cuil, s/n, modelo, estado, razón
+      @json['aaData'] << [stu.name, stu.cuil, stu.machine.sn, stu.machine.model,
+                            stu.machine.states.last.name, stu.machine.machine_states.last.reason]
+    }
+    render :json => @json
+  end
+
+  def states_stats
     @students = Student.all
-    @states = {}
-    # State.all.map { |s|
-    #   [s.name, s.machines.count]
-    # }.each { |s|
-    #   @states[s.first] = s.last
-    # }
-    Student.all.each { |stu|
+    @states   = {}
+    @students.each { |stu|
       state = stu.machine.states.last.name
       @states[state] = 0 if not @states[state]
       @states[state] += 1
     }
-
-    # gon.watch.test = Time.now
+    render :json => @states
   end
 
   def update_table
@@ -50,18 +78,20 @@ class AdminController < ApplicationController
   end
 
   def add_student
-    @student = Student.new
-    @student.name = params[:student][:name]
-    @student.cuil = params[:student][:cuil]
-    @student.save!
-    @student.machine = Machine.create(:sn => params[:student][:sn], :model => params[:student][:model])
-    @machine = @student.machine
-    @state = State.find_or_create_by_name(params[:student][:state])
-    @machine.states << @state
-    @reason = @machine.machine_states.last
-    @reason.reason = params[:student][:reason]
-    @reason.save!
+    if request.post?
+      @student = Student.new
+      @student.name = params[:student][:name]
+      @student.cuil = params[:student][:cuil]
+      @student.save!
+      @student.machine = Machine.create(:sn => params[:student][:sn], :model => params[:student][:model])
+      @machine = @student.machine
+      @state = State.find_or_create_by_name(params[:student][:state])
+      @machine.states << @state
+      @reason = @machine.machine_states.last
+      @reason.reason = params[:student][:reason]
+      @reason.save!
 
-    redirect_to admin_index_path
+      redirect_to admin_index_path
+    end
   end
 end

@@ -9,9 +9,11 @@
         /[if lt IE 8]
           = stylesheet_link_tag "font-awesome-ie7.min.css", media: "all"
         = javascript_include_tag :modernizr
-        = javascript_include_tag "//www.google.com/jsapi", "chartkick"
         = csrf_meta_tags
         = yield(:head)
+        = include_gon(watch: true)
+        = javascript_include_tag "application"
+        = javascript_include_tag "//www.google.com/jsapi", "chartkick"
   %body{:class => "#{controller_name} #{action_name}"}
     #wrap
       #top
@@ -44,14 +46,7 @@
         %ul#menu.accordion.collapse
           %li.nav-header Menú
           %li.nav-divider
-          %li.accordion-group
-            %a.accordion-toggle{"data-parent" => "#menu", "data-target" => "#dashboard-nav", "data-toggle" => "collapse", :href => "#"}
-              %i.icon-dashboard
-              Panel de Admin
-          %li.accordion-group
-            %a.accordion-toggle{"data-parent" => "#menu", "data-target" => "#dashboard-nav", "data-toggle" => "collapse", :href => "#"}
-              %i.icon-bar-chart
-              Estadísticas
+          = render :partial => 'layouts/navigation'
         / /#menu
       / /#left
       #content
@@ -66,6 +61,3 @@
       %p
         2013
         = link_to "CINC", "http://github.com/fermuch/CINC"
-    
-    = include_gon(watch: true)
-    = javascript_include_tag "application"

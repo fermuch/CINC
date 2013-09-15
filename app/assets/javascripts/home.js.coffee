@@ -6,10 +6,12 @@ $(document).ready ->
   # Init DataTables 
   oTable = $(".datatable").dataTable
     sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
-    sAjaxSource: $('.datatable').data('source')
-    "oLanguage":
-      "sUrl": "/datatable_spanish.txt"
+    sAjaxSource: gon.students_url
+    bProcessing: true,
+    oLanguage:
+      sUrl: "/datatable_spanish.txt"
     # sPaginationType: "bootstrap"
+    
   # Apply the jEditable handlers to the table 
   $("td", oTable.fnGetNodes()).editable gon.update_table,
     callback: (sValue, y) ->
@@ -18,7 +20,6 @@ $(document).ready ->
       # state needs a reload to work
       if $(this).attr('id') == 'state'
         location.reload()
-
 
     submitdata: (value, settings) ->
       row_id: @parentNode.getAttribute("id")
