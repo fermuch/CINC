@@ -1,0 +1,7 @@
+
+etc/cinc/pkgr.yml opt/local/cinc/config/pkgr.yml
+
+etc/cinc/database.yml opt/local/cinc/config/database.yml
+
+var/log/cinc opt/local/cinc/log
+var/db/cinc opt/local/cinc/db

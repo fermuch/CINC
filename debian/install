@@ -1,0 +1,18 @@
+
+config/pkgr.yml etc/cinc
+
+config/database.yml etc/cinc
+
+config opt/local/cinc
+.bundle opt/local/cinc
+Gemfile opt/local/cinc
+Gemfile.lock opt/local/cinc
+config.ru opt/local/cinc
+Rakefile opt/local/cinc
+app opt/local/cinc
+bin opt/local/cinc
+db/* var/db/cinc
+lib opt/local/cinc
+public opt/local/cinc
+script opt/local/cinc
+vendor opt/local/cinc

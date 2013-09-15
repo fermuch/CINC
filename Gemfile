@@ -27,6 +27,7 @@ gem 'will_paginate'
 gem 'sqlite3'
 gem 'therubyracer', :group => 'assets'
 gem 'thin'
+gem 'simple_form', '>= 3.0.0.rc'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
@@ -38,6 +39,7 @@ group :development do
   gem 'rb-fchange', :require=>false
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
+  gem 'rails_panel'
 end
 group :development, :test do
   gem 'fabrication'

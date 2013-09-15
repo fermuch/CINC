@@ -1,0 +1,10 @@
+# cinc logs:
+/var/log/cinc/*.log {
+  daily
+  missingok
+  rotate 14
+  compress
+  delaycompress
+  notifempty
+  copytruncate
+}
