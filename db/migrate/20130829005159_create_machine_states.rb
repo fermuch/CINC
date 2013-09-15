@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateMachineStates < ActiveRecord::Migration
   def change
     create_table :machine_states do |t|

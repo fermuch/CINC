@@ -26,6 +26,9 @@
           = student.machine.machine_states.last.state.name
         %td{:id => 'reason'}
           = student.machine.machine_states.last.reason
-
-
 %br
+%br
+%br
+
+%div{:style => 'text-align: right'}
+  = link_to "Exportar", admin_export_table_path('csv')

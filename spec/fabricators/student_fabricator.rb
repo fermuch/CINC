@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Fabricator(:student) do
   name "Test"
   cuil "301111111119"

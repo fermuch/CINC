@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AdminController < ApplicationController
   def index
     # save all the stundents in an array
@@ -92,6 +93,46 @@ class AdminController < ApplicationController
       @reason.save!
 
       redirect_to admin_index_path
+    end
+  end
+
+  def export_table
+    require 'csv'
+    @students = Student.all.includes(:machine => [:machine_states, :states])
+
+    filename = "alumnos_#{Date.today.strftime('%d%b%y')}.csv"
+    csv_data = CSV.generate do |csv|
+      # head
+      csv << ['Alumno', 'CUIL', 'Número de Serie', 'Modelo', 'Estado Actual', 'Razón']
+      # body
+      @students.each do |stu|
+        csv << [stu.name, stu.cuil, stu.machine.sn, stu.machine.model,
+                  stu.machine.states.last.name, stu.machine.machine_states.last.reason]
+      end
+    end
+
+    send_data csv_data,
+                :type => 'text/csv; charset=UTF-8; header=present',
+                :disposition => "attachment; filename=#{filename}"
+  end
+
+  def stats
+    if request.format == :json
+      case params[:type]
+      when 'usage'
+        @usage = MachineState.all.group_by{ |item| item.send(:created_at).beginning_of_day }.
+                  map { |v| [v.first, v.last.count] }
+        render :json => @usage
+      when 'students'
+        @students = Student.all.includes(:machine => [:machine_states, :states])
+        @states   = {}
+        @students.each { |stu|
+          state = stu.machine.states.last.name
+          @states[state] = 0 if not @states[state]
+          @states[state] += 1
+        }
+        render :json => @states
+      end
     end
   end
 end

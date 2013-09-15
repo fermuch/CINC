@@ -1,0 +1,10 @@
+.col-lg-12
+  %h1 Estadísticas
+
+  %center
+    %h2 Uso de la Aplicación
+  = area_chart admin_stats_path('usage', 'json'), height: '300px'
+
+  %center
+    %h2 Estados Actuales
+  = pie_chart admin_stats_path('students', 'json'), height: '500px'

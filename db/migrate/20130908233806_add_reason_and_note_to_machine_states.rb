@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddReasonAndNoteToMachineStates < ActiveRecord::Migration
   def change
     add_column :machine_states, :reason, :string

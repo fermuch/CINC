@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Fabricator(:user) do
   name     'Test User'
   email    'example@example.com'
