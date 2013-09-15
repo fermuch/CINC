@@ -10,9 +10,10 @@ class AdminController < ApplicationController
   def students
     # make the json for datatables
     if params['iDisplayStart'] and params['iDisplayLength'] then
-      @students = Student.paginate(:page => params['iDisplayStart'], :per_page => params['iDisplayLength'])
+      @students = Student.paginate(:page => params['iDisplayStart'], :per_page => params['iDisplayLength']).
+                          includes(:machine => [:machine_states, :states])
     else
-      @students = Student.all
+      @students = Student.all.includes(:machine => [:machine_states, :states])
     end
 
     if params['sSearch'] then
@@ -34,7 +35,7 @@ class AdminController < ApplicationController
   end
 
   def states_stats
-    @students = Student.all
+    @students = Student.all.includes(:machine => [:machine_states, :states])
     @states   = {}
     @students.each { |stu|
       state = stu.machine.states.last.name
@@ -73,7 +74,6 @@ class AdminController < ApplicationController
 
     if request.xhr? then
       render :text => params[:value]
-      sleep 1.5
     end
   end
 
