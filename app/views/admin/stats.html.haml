@@ -8,3 +8,7 @@
   %center
     %h2 Estados Actuales
   = pie_chart admin_stats_path('students', 'json'), height: '500px'
+
+  %center
+    %h2 Total de Cambio de Estados Por Alumno
+  = pie_chart admin_stats_path('students_states', 'json')

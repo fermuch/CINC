@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
   def gon_vars
     gon.update_table = admin_update_table_path
     gon.students_url = admin_students_path('json')
+    gon.action       = action_name
   end
 
 end

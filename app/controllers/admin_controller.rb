@@ -132,6 +132,8 @@ class AdminController < ApplicationController
           @states[state] += 1
         }
         render :json => @states
+      when 'students_states'
+        
       end
     end
   end
