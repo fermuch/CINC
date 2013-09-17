@@ -133,7 +133,9 @@ class AdminController < ApplicationController
         }
         render :json => @states
       when 'students_states'
-        
+        @changes = MachineState.select(:updated_at).all.
+                    group_by{|ms| ms.updated_at.beginning_of_day}.map{ |ms| [ms.first, ms.last.count]}
+        render :json => @changes
       end
     end
   end
