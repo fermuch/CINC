@@ -1,0 +1,16 @@
+!!!
+%html{lang: "es"}
+  %head
+    %meta{charset: "UTF-8"}/
+    %title Iniciar Sesión
+    = csrf_meta_tags
+    = yield(:head)
+    = stylesheet_link_tag('bootstrap_and_overrides')
+    = stylesheet_link_tag('/login')
+  %body
+    .container
+      .text-center
+        = image_tag "logo.png"
+      .tab-content
+        =yield
+    / /container

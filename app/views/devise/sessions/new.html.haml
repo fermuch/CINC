@@ -1,7 +1,21 @@
-%h2 Sign in
 = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
-  = f.input :email, :autofocus => true
-  = f.input :password
-  = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
-  = f.button :submit, "Sign in", :class => 'btn-primary'
-= render "devise/shared/links"
+  #login.tab-pane.active
+    %form.form-signin{action: "index.html"}
+      %input.form-control{placeholder: "Correo", type: "text", name: 'user[email]'}/
+      %input.form-control{placeholder: "Contraseña", type: "password", name: 'user[password]'}/
+      %br
+      %button.btn.btn-lg.btn-primary.btn-block{type: "submit"} Iniciar Sesión
+:css
+  body {
+    text-align: center;
+    background-image: url('/assets/zinc01.jpg');
+  }
+  #login {
+    padding: 10px;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  input.form-control {
+    max-width: 300px;
+    text-align: left;
+  }

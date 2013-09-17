@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class ApplicationController < ActionController::Base
-
+  layout :layout_by_resource
   before_action :gon_vars
 
   # Prevent CSRF attacks by raising an exception.
@@ -11,6 +11,13 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, :alert => exception.message
   end
 
+  def layout_by_resource
+    if devise_controller?
+      "login"
+    else
+      "application"
+    end
+  end
 
   def gon_vars
     gon.update_table = admin_update_table_path
