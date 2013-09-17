@@ -21,7 +21,7 @@ update_datatables = ->
             location.reload()
 
         submitdata: (value, settings) ->
-          row_id: @parentNode.getAttribute("id")
+          row_id: $(@parentNode).find('td:first').html()
           column: oTable.fnGetPosition(this)[2]
 
         data: (data) ->

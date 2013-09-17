@@ -5,6 +5,7 @@
 %table{:name => "students", :class => "datatable" }
   %thead
     %tr
+      %th ID
       %th Alumno
       %th CUIL
       %th Número de Serie
@@ -14,6 +15,8 @@
   %tbody
     - @students.each do |student|
       %tr{:id => student.id}
+        %td{:id => 'id', :width => '5%'}
+          = student.id
         %td{:id => 'name'}
           = student.name
         %td{:id => 'cuil'}

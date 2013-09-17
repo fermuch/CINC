@@ -29,7 +29,7 @@ class AdminController < ApplicationController
     @json['aaData'] = []
     @students.each { |stu|
       # alumno, cuil, s/n, modelo, estado, razón
-      @json['aaData'] << [stu.name, stu.cuil, stu.machine.sn, stu.machine.model,
+      @json['aaData'] << [stu.id, stu.name, stu.cuil, stu.machine.sn, stu.machine.model,
                             stu.machine.states.last.name, stu.machine.machine_states.last.reason]
     }
     render :json => @json
@@ -49,25 +49,25 @@ class AdminController < ApplicationController
   def update_table
     @student = Student.find(params[:row_id])
 
-    case params[:id]
-    when 'name'
+    case params[:column]
+    when "1" # name
       @student.name = params[:value]
       @student.save!
-    when 'cuil'
+    when "2" # cuil
       @student.cuil = params[:value]
       @student.save!
-    when 'sn'
+    when "3" # sn
       @machine = @student.machine
       @machine.sn = params[:value]
       @machine.save!
-    when 'model'
+    when "4" # model
       @machine = @student.machine
       @machine.model = params[:value]
       @machine.save!
-    when 'state'
+    when "5" # state
       @state = State.find_or_create_by_name(params[:value])
       @student.machine.states << @state
-    when 'reason'
+    when "6" # reason
       @reason = @student.machine.machine_states.last
       @reason.reason = params[:value]
       @reason.save!
@@ -103,10 +103,10 @@ class AdminController < ApplicationController
     filename = "alumnos_#{Date.today.strftime('%d%b%y')}.csv"
     csv_data = CSV.generate do |csv|
       # head
-      csv << ['Alumno', 'CUIL', 'Número de Serie', 'Modelo', 'Estado Actual', 'Razón']
+      csv << ['ID', 'Alumno', 'CUIL', 'Número de Serie', 'Modelo', 'Estado Actual', 'Razón']
       # body
       @students.each do |stu|
-        csv << [stu.name, stu.cuil, stu.machine.sn, stu.machine.model,
+        csv << [stu.id, stu.name, stu.cuil, stu.machine.sn, stu.machine.model,
                   stu.machine.states.last.name, stu.machine.machine_states.last.reason]
       end
     end
