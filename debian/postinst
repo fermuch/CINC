@@ -38,6 +38,9 @@ case "$1" in
         chown -R $USER.$GROUP /etc/$NAME/
         chown -R $USER.$GROUP /var/db/$NAME/
         chown -R $USER.$GROUP /var/log/$NAME/
+
+        # create default user
+        $PREFIX/$NAME/bin/$NAME/bin/rake db:seed ADMIN_NAME=admin ADMIN_EMAIL=admin@admin.com ADMIN_PASSWORD=superadmin ROLES=[admin]
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
