@@ -1,0 +1,35 @@
+.col-lg-12
+  %h2
+    Registro de 
+    = @student.name
+  %p
+    %ul
+      %li
+        %p
+          CUIL:
+          = @student.cuil
+      %li
+        %p
+          Estado Actual: 
+          %em
+            = @student.machine.states.last.name
+      %li
+        %p
+          Razón del Estado:
+          %br
+          «
+          = @student.machine.machine_states.last.reason
+          »
+
+      %li
+        %p
+          Registro de Estados
+          %ul
+            - @student.machine.machine_states.order('id DESC').each do |stu|
+              %li
+                = stu.created_at.strftime('[%d/%m/%Y]')
+                = (stu.state.name || 'Estado sin nombre') << ':'
+                %em
+                  «
+                  = stu.reason || 'Sin descripción'
+                  »

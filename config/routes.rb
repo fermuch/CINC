@@ -7,6 +7,7 @@ CINC::Application.routes.draw do
   get  "admin/index"
   get  "admin/add_student"
   get  "admin/students"
+  get  "admin/student/log/:id", to: 'admin#student_log', as: 'admin_student_log'
   post "admin/update_table"
   post "admin/add_student"
   get  "admin/export_table"

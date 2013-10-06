@@ -35,6 +35,11 @@ class AdminController < ApplicationController
     render :json => @json
   end
 
+  def student_log
+    @student = Student.includes(:machine => [:machine_states, :states]).find(params[:id])
+
+  end
+
   def states_stats
     @students = Student.all.includes(:machine => [:machine_states, :states])
     @states   = {}
