@@ -1,11 +1,7 @@
 # -*- encoding : utf-8 -*-
 class AdminController < ApplicationController
   def index
-    # save all the stundents in an array
-    # TODO: eager-loading
-    @students = Student.first(10)
-
-    # gon.watch.test = Time.now
+    @students = Student.includes(:machine => [:machine_states, :states]).first(10)
   end
 
   def students
@@ -28,7 +24,7 @@ class AdminController < ApplicationController
     @json = {}
     @json['aaData'] = []
     @students.each { |stu|
-      # alumno, cuil, s/n, modelo, estado, razón
+                          # alumno, cuil, s/n, modelo, estado, razón
       @json['aaData'] << [stu.id, stu.name, stu.cuil, stu.machine.sn, stu.machine.model,
                             stu.machine.states.last.name, stu.machine.machine_states.last.reason]
     }
@@ -37,7 +33,6 @@ class AdminController < ApplicationController
 
   def student_log
     @student = Student.includes(:machine => [:machine_states, :states]).find(params[:id])
-
   end
 
   def states_stats
@@ -70,7 +65,7 @@ class AdminController < ApplicationController
       @machine.model = params[:value]
       @machine.save!
     when "5" # state
-      @state = State.find_or_create_by_name(params[:value])
+      @state = State.find_or_create_by(name: params[:value])
       @student.machine.states << @state
     when "6" # reason
       @reason = @student.machine.machine_states.last
@@ -91,7 +86,7 @@ class AdminController < ApplicationController
       @student.save!
       @student.machine = Machine.create(:sn => params[:student][:sn], :model => params[:student][:model])
       @machine = @student.machine
-      @state = State.find_or_create_by_name(params[:student][:state])
+      @state = State.find_or_create_by(name: params[:student][:state])
       @machine.states << @state
       @reason = @machine.machine_states.last
       @reason.reason = params[:student][:reason]
@@ -138,7 +133,7 @@ class AdminController < ApplicationController
         }
         render :json => @states
       when 'students_states'
-        @changes = MachineState.select(:updated_at).all.
+        @changes = MachineState.select(:updated_at).load.
                     group_by{|ms| ms.updated_at.beginning_of_day}.map{ |ms| [ms.first, ms.last.count]}
         render :json => @changes
       end
