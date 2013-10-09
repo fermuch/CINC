@@ -45,6 +45,9 @@ $ RAILS_ENV=production rails server
 Y entrar a http://localhost:3000
 
 
+### NOTA
+Para poder acelerar el proceso de instalación en servidores, se están creando paquetes .deb para su distribución.
+
 ## ¿Cómo actualizar?
 
 Actualizar es un proceso bastante fácil. Sólo hace falta introducir estos comandos:
