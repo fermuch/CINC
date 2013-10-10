@@ -1,4 +1,4 @@
-version: 0.0.0
+version: 0.1.0
 name: cinc
 description: Conectar Igualdad Netbook Manager
 # The git reference from which to build the package:
