@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'anjlab-bootstrap-rails', '>= 3.0.0.0', :require => 'bootstrap-rails'
 gem 'cancan'
 gem 'devise'
+gem 'devise-i18n'
 gem 'haml-rails'
 gem 'rolify'
 gem 'font-awesome-rails'
@@ -51,4 +52,4 @@ end
 
 
 # para poder empaquetar a deb
-gem 'pkgr'
+gem 'pkgr', :github => 'crohr/pkgr'

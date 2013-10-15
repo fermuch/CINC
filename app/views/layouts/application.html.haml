@@ -23,15 +23,18 @@
           %header.navbar-header
             %a.navbar-brand{:href => "index.html"}
               = image_tag 'logo.png'
-          / /.topnav
-          .collapse.navbar-collapse.navbar-ex1-collapse
-            / .nav
-            %ul.nav.navbar-nav
-              %li
-                %a{:href => "dashboard.html"} Panel de Admin
-              %li
-                %a{:href => "table.html"} Estadísticas
-            / /.nav
+          .topnav
+            .btn-toolbar
+              .btn-group
+                %a#changeSidebarPos.btn.btn-success.btn-sm{"data-original-title" => "Modo Ancho", "data-placement" => "bottom", "data-toggle" => "tooltip"}
+                  %i.icon-resize-horizontal
+              .btn-group
+                %a.btn.btn-default.btn-sm{"data-original-title" => "Backups", "data-placement" => "bottom", "data-toggle" => "tooltip", href: "#"}
+                  %i.icon-file
+              .btn-group
+                = link_to(destroy_user_session_path, {"data-original-title" => "Cerrar Sesión", "data-placement" => "bottom", "data-toggle" => "tooltip", "class" => "btn btn-metis-1 btn-sm", "data-no-turbolink" => true}) do
+                  %i.icon-off
+          
         / /.navbar
         / header.head
         %header.head

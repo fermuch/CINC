@@ -1,3 +1,4 @@
+---
 version: 0.1.0
 name: cinc
 description: Conectar Igualdad Netbook Manager
@@ -30,4 +31,3 @@ debian_build_dependencies:
   - libxml2-dev
   - libxslt-dev
   - libsqlite3-dev
-  

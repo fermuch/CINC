@@ -1,4 +1,15 @@
 GIT
+  remote: git://github.com/crohr/pkgr.git
+  revision: 36e7302e5e266c0b6acd71451d0bcdda9fb8f58f
+  specs:
+    pkgr (1.0.5)
+      fpm
+      mixlib-log
+      mixlib-shellout
+      rake
+      thor
+
+GIT
   remote: git://github.com/rweng/jquery-datatables-rails.git
   revision: 494f752b8eb8350f33841c822a67d014c869219f
   specs:
@@ -40,7 +51,7 @@ GEM
     arr-pm (0.0.8)
       cabin (> 0)
     atomic (1.1.14)
-    backports (3.3.4)
+    backports (3.3.5)
     bcrypt-ruby (3.1.2)
     better_errors (1.0.1)
       coderay (>= 1.0.0)
@@ -79,6 +90,7 @@ GEM
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    devise-i18n (0.9.1)
     diff-lcs (1.2.4)
     email_spec (1.5.0)
       launchy (~> 2.1)
@@ -164,12 +176,6 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
-    pkgr (1.0.2)
-      fpm
-      mixlib-log
-      mixlib-shellout
-      rake
-      thor
     polyglot (0.3.3)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
@@ -276,6 +282,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   database_cleaner (= 1.0.1)
   devise
+  devise-i18n
   email_spec
   fabrication
   font-awesome-rails
@@ -291,7 +298,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   modernizr-rails
-  pkgr
+  pkgr!
   quiet_assets
   rails (= 4.0.0)
   rails_panel

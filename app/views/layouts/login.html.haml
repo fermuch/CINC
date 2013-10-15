@@ -9,8 +9,13 @@
     = stylesheet_link_tag('/login')
   %body
     .container
-      .text-center
-        = image_tag "logo.png"
-      .tab-content
-        =yield
+      #signin
+        .text-center
+          = image_tag "logo.png"
+          - flash.each do |msg,text|
+            %br
+            %li.label.label-danger
+              = text
+        .tab-content
+          =yield
     / /container

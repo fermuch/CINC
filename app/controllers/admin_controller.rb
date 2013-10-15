@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 class AdminController < ApplicationController
+  before_filter :authenticate_user!
+  
   def index
     @students = Student.includes(:machine => [:machine_states, :states]).first(10)
   end
