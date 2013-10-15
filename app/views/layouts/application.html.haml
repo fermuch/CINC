@@ -38,6 +38,15 @@
         / /.navbar
         / header.head
         %header.head
+          .search-bar
+            %form.main-search
+              / TODO: hacerlo funcionar :-P
+              .input-group
+                %input.input-small.form-control{placeholder: "Buscar alumno ...", type: "text"}/
+                %span.input-group-btn
+                  %button.btn.btn-default.btn-sm{type: "button"}
+                    %i.icon-search
+
           .main-bar
             %h3
               %i.icon-home
