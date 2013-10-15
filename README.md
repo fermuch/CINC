@@ -42,7 +42,7 @@ Y finalmente, para iniciar el servidor:
 ```bash
 $ RAILS_ENV=production rails server
 ```
-Y entrar a http://localhost:3000
+Y entrar a [http://localhost:3000](http://localhost:3000)
 
 
 ### NOTA
@@ -59,3 +59,8 @@ $ rake assets:precompile:all
 ```
 
 Y ya se tiene la versión actualizada.
+
+
+## ¿Tenés alguna idea?
+
+Dejala en [la wiki](https://github.com/fermuch/CINC/wiki/Ideas) y veo de implementarla, o mejor todavía, escribilo vos y haceme un pull request, y seguramente lo añado! ;)
